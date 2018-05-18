@@ -69,8 +69,6 @@ namespace TentaPlane
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            float time = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
-
             if (Keyboard.GetState().IsKeyDown(Keys.A))
                 speed += 0.0009f;
 
