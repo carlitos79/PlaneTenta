@@ -50,14 +50,14 @@ namespace TentaPlane
             effect.VertexColorEnabled = true;
 
             effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.01f, 1000f);
-            effect.View = Matrix.CreateLookAt(new Vector3(0f, 0f, 15f), new Vector3(0, 0, 0), Vector3.Up);
+            effect.View = Matrix.CreateLookAt(new Vector3(20f, 5f, 5f), new Vector3(0, 0, 0), Vector3.Up);
         }
 
         private void CreateBoxes()
         {
             boxes = new Box[100];
             for (int i = 0; i < 100; ++i)
-                boxes[i] = new Box(new Vector3(-100 + i * 5, 0, 0), Color.Yellow, GraphicsDevice);
+                boxes[i] = new Box(new Vector3(-400 + i * 5, 0, 0), Color.Yellow, GraphicsDevice);
         }
 
         /// <summary>
