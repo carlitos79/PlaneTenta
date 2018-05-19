@@ -12,7 +12,11 @@ namespace TentaPlane.PlaneContent
         private Vector3 rotation = Vector3.Zero;
         private Vector3 position = Vector3.Zero;
 
-        public PlaneBody(GraphicsDevice graphicsDevice) : base(graphicsDevice, 4, 2, 0, Color.Blue)
+        private static Vector3 topLeft = new Vector3(-4, 2, 0);
+        private static Vector3 bottomLeft = new Vector3(-4, -2, 0);
+        private static Vector3 bottomRight = new Vector3(4, 2, 0);
+
+        public PlaneBody(GraphicsDevice graphicsDevice) : base(graphicsDevice, topLeft, bottomLeft, bottomRight, Color.Blue)
         {
             parts.Add(new RotorPart1(graphicsDevice));
             parts.Add(new RotorPart2(graphicsDevice));

@@ -14,6 +14,7 @@ namespace TentaPlane
         PlaneBody planeBody;
         BasicEffect effect;
         float speed = 0f;
+        Box[] boxes;
 
         public Game1()
         {
@@ -42,12 +43,21 @@ namespace TentaPlane
         /// </summary>
         protected override void LoadContent()
         {
+            CreateBoxes();
+
             planeBody = new PlaneBody(GraphicsDevice);
             effect = new BasicEffect(GraphicsDevice);
             effect.VertexColorEnabled = true;
 
-            effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, 1.7f, 0.01f, 1000f);
-            effect.View = Matrix.CreateLookAt(new Vector3(5f, 10f, 10f), new Vector3(0, 0, 0), Vector3.Up);
+            effect.Projection = Matrix.CreatePerspectiveFieldOfView(MathHelper.PiOver4, GraphicsDevice.Viewport.AspectRatio, 0.01f, 1000f);
+            effect.View = Matrix.CreateLookAt(new Vector3(0f, 0f, 15f), new Vector3(0, 0, 0), Vector3.Up);
+        }
+
+        private void CreateBoxes()
+        {
+            boxes = new Box[100];
+            for (int i = 0; i < 100; ++i)
+                boxes[i] = new Box(new Vector3(-100 + i * 5, 0, 0), Color.Yellow, GraphicsDevice);
         }
 
         /// <summary>
@@ -88,6 +98,8 @@ namespace TentaPlane
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
+            foreach (var b in boxes)
+                b.Draw(effect, Matrix.Identity);
             planeBody.DrawPlanePart(effect, Matrix.Identity);
 
             base.Draw(gameTime);

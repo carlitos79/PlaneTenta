@@ -11,9 +11,11 @@ namespace TentaPlane.PlaneContent
         protected Matrix World = Matrix.Identity;
         private Color partColor;
 
-        private float pointX = 1f;
-        private float pointY = 1f;
-        private float pointZ = 1f;
+        private Vector3 point1;
+        private Vector3 point2;
+        private Vector3 point3;
+
+        
 
         public PlaneParts(GraphicsDevice graphics)
         {
@@ -22,13 +24,13 @@ namespace TentaPlane.PlaneContent
             Initialize();
         }
 
-        public PlaneParts(GraphicsDevice graphics, float pointX, float pointY, float pointZ, Color partColor)
+        public PlaneParts(GraphicsDevice graphics, Vector3 p1, Vector3 p2, Vector3 p3, Color partColor)
         {
             GraphicsDevice = graphics;
 
-            this.pointX = pointX;
-            this.pointY = pointY;
-            this.pointZ = pointZ;
+            point1 = p1;
+            point2 = p2;
+            point3 = p3;
 
             this.partColor = partColor;
 
@@ -39,13 +41,13 @@ namespace TentaPlane.PlaneContent
         {
             VertexPositionColor[] vertices = new VertexPositionColor[3];
 
-            Vector3 topLeft = new Vector3(-pointX, pointY, pointZ);
-            Vector3 bottomLeft = new Vector3(-pointX, -pointY, pointZ);
-            Vector3 bottomRight = new Vector3(pointX, pointY, pointZ);
+            //Vector3 topLeft = new Vector3(-pointX, pointY, pointZ);
+            //Vector3 bottomLeft = new Vector3(0, -pointY, pointZ);
+            //Vector3 bottomRight = new Vector3(pointX, pointY, pointZ);
 
-            vertices[0] = new VertexPositionColor(topLeft, partColor);
-            vertices[1] = new VertexPositionColor(bottomLeft, partColor);
-            vertices[2] = new VertexPositionColor(bottomRight, partColor);
+            vertices[0] = new VertexPositionColor(point1, partColor);
+            vertices[1] = new VertexPositionColor(point2, partColor);
+            vertices[2] = new VertexPositionColor(point3, partColor);
 
             VertexBuffer = new VertexBuffer(GraphicsDevice, VertexPositionColor.VertexDeclaration, 3, BufferUsage.WriteOnly);
             VertexBuffer.SetData(vertices);
